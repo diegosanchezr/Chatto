@@ -80,6 +80,7 @@ class FakeDataSource: ChatDataSourceProtocol {
         let message = createTextMessageModel(uid, text: text, isIncoming: false)
         self.messageSender.sendMessage(message)
         self.slidingWindow.insertItem(message, position: .Bottom)
+        self.slidingWindow.adjustWindow(focusPosition: 1, maxWindowSize: self.preferredMaxWindowSize)
         self.delegate?.chatDataSourceDidUpdate(self)
     }
 
@@ -88,12 +89,14 @@ class FakeDataSource: ChatDataSourceProtocol {
         let message = createPhotoMessageModel(uid, image: image, size: image.size, isIncoming: false)
         self.messageSender.sendMessage(message)
         self.slidingWindow.insertItem(message, position: .Bottom)
+        self.slidingWindow.adjustWindow(focusPosition: 1, maxWindowSize: self.preferredMaxWindowSize)
         self.delegate?.chatDataSourceDidUpdate(self)
     }
 
     func addRandomIncomingMessage() {
         let message = FakeMessageFactory.createChatItem("\(self.lastMessageId++)", isIncoming: true)
         self.slidingWindow.insertItem(message, position: .Bottom)
+        self.slidingWindow.adjustWindow(focusPosition: 1, maxWindowSize: self.preferredMaxWindowSize)
         self.delegate?.chatDataSourceDidUpdate(self)
     }
 
