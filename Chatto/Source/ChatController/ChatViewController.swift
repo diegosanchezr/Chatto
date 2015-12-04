@@ -80,8 +80,17 @@ public class ChatViewController: UIViewController, UICollectionViewDataSource, U
         self.keyboardTracker.stopTracking()
     }
 
+    var flowLayout: UICollectionViewFlowLayout!
+
     private func addCollectionView() {
-        self.collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: self.createCollectionViewLayout)
+        flowLayout = UICollectionViewFlowLayout()
+        flowLayout.estimatedItemSize = CGSize(width: 200, height: 50)
+        flowLayout.itemSize = CGSize(width: 200, height: 50)
+
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.sectionInset = UIEdgeInsetsZero
+        self.collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: flowLayout)
         self.collectionView.contentInset = self.constants.defaultContentinsets
         self.collectionView.scrollIndicatorInsets = self.constants.defaultScrollIndicatorInsets
         self.collectionView.alwaysBounceVertical = true

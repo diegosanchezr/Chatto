@@ -22,37 +22,19 @@
  THE SOFTWARE.
 */
 
-import Foundation
+import UIKit
 
-// Handles messages that aren't supported so they appear as invisible
-class DummyChatItemPresenter: ChatItemPresenterProtocol {
+class TextAutolayoutCell: UICollectionViewCell {
 
-    class func registerCells(collectionView: UICollectionView) {
-        collectionView.registerClass(DummyCollectionViewCell.self, forCellWithReuseIdentifier: "cell-id-unhandled-message")
-    }
-
-    var canCalculateHeightInBackground: Bool {
-        return true
-    }
-
-    func heightForCell(maximumWidth width: CGFloat, decorationAttributes: ChatItemDecorationAttributesProtocol?) -> CGFloat {
-        return 0
-    }
-
-    func dequeueCell(collectionView collectionView: UICollectionView, indexPath: NSIndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCellWithReuseIdentifier("cell-id-unhandled-message", forIndexPath: indexPath)
-    }
-
-    func configureCell(cell: UICollectionViewCell, decorationAttributes: ChatItemDecorationAttributesProtocol?) {
-        cell.hidden = true
-    }
-}
+    @IBOutlet var textView: UITextView!
 
 
-class DummyCollectionViewCell: UICollectionViewCell {
     override func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let attributes = layoutAttributes.copy() as! UICollectionViewLayoutAttributes
-        attributes.frame = CGRectZero
-        return attributes
+        let attr: UICollectionViewLayoutAttributes = layoutAttributes.copy() as! UICollectionViewLayoutAttributes
+        var newFrame = attr.frame
+        let desiredHeight: CGFloat = self.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        newFrame.size.height = desiredHeight
+        attr.frame = newFrame
+        return attr
     }
 }

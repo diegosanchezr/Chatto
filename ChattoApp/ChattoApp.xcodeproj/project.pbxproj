@@ -22,6 +22,9 @@
 		C35A6F4F1BF807EC0085CA19 /* SlidingDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A6F4E1BF807EC0085CA19 /* SlidingDataSourceTests.swift */; };
 		C35A6F511BF8089C0085CA19 /* FakeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A6F501BF8089C0085CA19 /* FakeDataSource.swift */; };
 		C396D98F1BF8C64900F10439 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396D98E1BF8C64900F10439 /* ConversationsViewController.swift */; };
+		C3AB04821C0B927500F343CC /* TextAutolayoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AB04811C0B927500F343CC /* TextAutolayoutCell.swift */; };
+		C3AB04841C0B92C200F343CC /* TextAutolayoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3AB04831C0B92C200F343CC /* TextAutolayoutCell.xib */; };
+		C3AB04861C0B935100F343CC /* TextAutolayoutPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AB04851C0B935100F343CC /* TextAutolayoutPresenter.swift */; };
 		C3B0D35B1BF3C55E006CF725 /* SendingStatusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B0D35A1BF3C55E006CF725 /* SendingStatusPresenter.swift */; };
 		C3B0D35D1BF3C627006CF725 /* SendingStatusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B0D35C1BF3C627006CF725 /* SendingStatusCollectionViewCell.swift */; };
 		C3B0D35F1BF3C63C006CF725 /* SendingStatusCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B0D35E1BF3C63C006CF725 /* SendingStatusCollectionViewCell.xib */; };
@@ -82,6 +85,9 @@
 		C35A6F4E1BF807EC0085CA19 /* SlidingDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingDataSourceTests.swift; sourceTree = "<group>"; };
 		C35A6F501BF8089C0085CA19 /* FakeDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeDataSource.swift; sourceTree = "<group>"; };
 		C396D98E1BF8C64900F10439 /* ConversationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
+		C3AB04811C0B927500F343CC /* TextAutolayoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextAutolayoutCell.swift; path = "Text-autolayout/TextAutolayoutCell.swift"; sourceTree = "<group>"; };
+		C3AB04831C0B92C200F343CC /* TextAutolayoutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextAutolayoutCell.xib; path = "Text-autolayout/TextAutolayoutCell.xib"; sourceTree = "<group>"; };
+		C3AB04851C0B935100F343CC /* TextAutolayoutPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextAutolayoutPresenter.swift; path = "Text-autolayout/TextAutolayoutPresenter.swift"; sourceTree = "<group>"; };
 		C3B0D35A1BF3C55E006CF725 /* SendingStatusPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendingStatusPresenter.swift; sourceTree = "<group>"; };
 		C3B0D35C1BF3C627006CF725 /* SendingStatusCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendingStatusCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3B0D35E1BF3C63C006CF725 /* SendingStatusCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendingStatusCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -201,9 +207,20 @@
 			path = ChattoAppUITests;
 			sourceTree = "<group>";
 		};
+		C3AB04801C0B923900F343CC /* Text-autolayout */ = {
+			isa = PBXGroup;
+			children = (
+				C3AB04811C0B927500F343CC /* TextAutolayoutCell.swift */,
+				C3AB04831C0B92C200F343CC /* TextAutolayoutCell.xib */,
+				C3AB04851C0B935100F343CC /* TextAutolayoutPresenter.swift */,
+			);
+			name = "Text-autolayout";
+			sourceTree = "<group>";
+		};
 		C3B0D3581BF3C54F006CF725 /* Custom items */ = {
 			isa = PBXGroup;
 			children = (
+				C3AB04801C0B923900F343CC /* Text-autolayout */,
 				C3B0D3591BF3C54F006CF725 /* Sending status */,
 			);
 			name = "Custom items";
@@ -330,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3B0D35F1BF3C63C006CF725 /* SendingStatusCollectionViewCell.xib in Resources */,
+				C3AB04841C0B92C200F343CC /* TextAutolayoutCell.xib in Resources */,
 				C33FBFB31BDE441C008E3545 /* LaunchScreen.storyboard in Resources */,
 				C33FBFB01BDE441C008E3545 /* Assets.xcassets in Resources */,
 				C33FBFAE1BDE441C008E3545 /* Main.storyboard in Resources */,
@@ -418,7 +436,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3AB04861C0B935100F343CC /* TextAutolayoutPresenter.swift in Sources */,
 				C31E291C1BF39DE600EF5B2F /* FakePhotoMessageViewModel.swift in Sources */,
+				C3AB04821C0B927500F343CC /* TextAutolayoutCell.swift in Sources */,
 				C3B0D3611BF3C928006CF725 /* ChatItemsDemoDecorator.swift in Sources */,
 				C33FBFAB1BDE441C008E3545 /* DemoChatViewController.swift in Sources */,
 				C396D98F1BF8C64900F10439 /* ConversationsViewController.swift in Sources */,

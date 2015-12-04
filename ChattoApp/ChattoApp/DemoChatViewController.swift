@@ -70,18 +70,15 @@ class DemoChatViewController: ChatViewController {
     override func createPresenterBuilders() -> [ChatItemType: [ChatItemPresenterBuilderProtocol]] {
         return [
             TextMessageModel.chatItemType: [
-                TextMessagePresenterBuilder(
-                    viewModelBuilder: TextMessageViewModelDefaultBuilder(),
-                    interactionHandler: TextMessageHandler(baseHandler: self.baseMessageHandler)
-                )
+                TextAutolayoutPresenterBuilder()
             ],
-            PhotoMessageModel.chatItemType: [
-                PhotoMessagePresenterBuilder(
-                    viewModelBuilder: FakePhotoMessageViewModelBuilder(),
-                    interactionHandler: PhotoMessageHandler(baseHandler: self.baseMessageHandler)
-                )
-            ],
-            SendingStatusModel.chatItemType: [SendingStatusPresenterBuilder()]
+//            PhotoMessageModel.chatItemType: [
+//                PhotoMessagePresenterBuilder(
+//                    viewModelBuilder: FakePhotoMessageViewModelBuilder(),
+//                    interactionHandler: PhotoMessageHandler(baseHandler: self.baseMessageHandler)
+//                )
+//            ],
+//            SendingStatusModel.chatItemType: [SendingStatusPresenterBuilder()]
         ]
     }
 
