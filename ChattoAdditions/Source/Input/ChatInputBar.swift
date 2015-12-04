@@ -54,6 +54,10 @@ public class ChatInputBar: ReusableXibView {
         return view
     }
 
+    public override func intrinsicContentSize() -> CGSize {
+        return CGSize(width: self.bounds.width, height: 75)
+    }
+
     override class func nibName() -> String {
         return "ChatInputBar"
     }

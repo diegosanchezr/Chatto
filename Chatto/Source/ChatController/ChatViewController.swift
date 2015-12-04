@@ -72,12 +72,13 @@ public class ChatViewController: UIViewController, UICollectionViewDataSource, U
 
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.keyboardTracker.startTracking()
+        self.becomeFirstResponder()
+//        self.keyboardTracker.startTracking()
     }
 
     public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.keyboardTracker.stopTracking()
+//        self.keyboardTracker.stopTracking()
     }
 
     private func addCollectionView() {
@@ -111,38 +112,42 @@ public class ChatViewController: UIViewController, UICollectionViewDataSource, U
 
     private var inputContainerBottomConstraint: NSLayoutConstraint!
     private func addInputViews() {
-        self.inputContainer = UIView(frame: CGRectZero)
-        self.inputContainer.autoresizingMask = .None
-        self.inputContainer.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(self.inputContainer)
-        self.view.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .Top, relatedBy: .GreaterThanOrEqual, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .Leading, relatedBy: .Equal, toItem: self.inputContainer, attribute: .Leading, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .Trailing, relatedBy: .Equal, toItem: self.inputContainer, attribute: .Trailing, multiplier: 1, constant: 0))
-        self.inputContainerBottomConstraint = NSLayoutConstraint(item: self.view, attribute: .Bottom, relatedBy: .Equal, toItem: self.inputContainer, attribute: .Bottom, multiplier: 1, constant: 0)
-        self.view.addConstraint(self.inputContainerBottomConstraint)
+//        self.inputContainer = UIView(frame: CGRectZero)
+//        self.inputContainer.autoresizingMask = .None
+//        self.inputContainer.translatesAutoresizingMaskIntoConstraints = false
+//        self.view.addSubview(self.inputContainer)
+//        self.view.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .Top, relatedBy: .GreaterThanOrEqual, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1, constant: 0))
+//        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .Leading, relatedBy: .Equal, toItem: self.inputContainer, attribute: .Leading, multiplier: 1, constant: 0))
+//        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .Trailing, relatedBy: .Equal, toItem: self.inputContainer, attribute: .Trailing, multiplier: 1, constant: 0))
+//        self.inputContainerBottomConstraint = NSLayoutConstraint(item: self.view, attribute: .Bottom, relatedBy: .Equal, toItem: self.inputContainer, attribute: .Bottom, multiplier: 1, constant: 0)
+//        self.view.addConstraint(self.inputContainerBottomConstraint)
 
-        let inputView = self.createChatInputView()
-        self.inputContainer.addSubview(inputView)
-        self.inputContainer.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .Top, relatedBy: .Equal, toItem: inputView, attribute: .Top, multiplier: 1, constant: 0))
-        self.inputContainer.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .Leading, relatedBy: .Equal, toItem: inputView, attribute: .Leading, multiplier: 1, constant: 0))
-        self.inputContainer.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .Bottom, relatedBy: .Equal, toItem: inputView, attribute: .Bottom, multiplier: 1, constant: 0))
-        self.inputContainer.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .Trailing, relatedBy: .Equal, toItem: inputView, attribute: .Trailing, multiplier: 1, constant: 0))
+        self.chatInputBar = self.createChatInputView()
+//        self.inputContainer.addSubview(inputView)
+//        self.inputContainer.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .Top, relatedBy: .Equal, toItem: inputView, attribute: .Top, multiplier: 1, constant: 0))
+//        self.inputContainer.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .Leading, relatedBy: .Equal, toItem: inputView, attribute: .Leading, multiplier: 1, constant: 0))
+//        self.inputContainer.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .Bottom, relatedBy: .Equal, toItem: inputView, attribute: .Bottom, multiplier: 1, constant: 0))
+//        self.inputContainer.addConstraint(NSLayoutConstraint(item: self.inputContainer, attribute: .Trailing, relatedBy: .Equal, toItem: inputView, attribute: .Trailing, multiplier: 1, constant: 0))
 
-        self.keyboardTracker = KeyboardTracker(viewController: self, inputContainer: self.inputContainer, inputContainerBottomContraint: self.inputContainerBottomConstraint, notificationCenter: self.notificationCenter)
+//        self.keyboardTracker = KeyboardTracker(viewController: self, inputContainer: self.inputContainer, inputContainerBottomContraint: self.inputContainerBottomConstraint, notificationCenter: self.notificationCenter)
     }
     var notificationCenter = NSNotificationCenter.defaultCenter()
     var keyboardTracker: KeyboardTracker!
+    var chatInputBar: UIView!
+    override public var inputAccessoryView: UIView {
+        return self.chatInputBar
+    }
 
-    public override var inputAccessoryView: UIView {
-        return self.keyboardTracker.trackingView
+    override public func canBecomeFirstResponder() -> Bool {
+        return true
     }
 
     public var isFirstLayout: Bool = true
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.adjustCollectionViewInsets()
-        self.keyboardTracker.layoutTrackingViewIfNeeded()
+//        self.adjustCollectionViewInsets()
+//        self.keyboardTracker.layoutTrackingViewIfNeeded()
 
         if self.isFirstLayout {
             self.updateQueue.start()
